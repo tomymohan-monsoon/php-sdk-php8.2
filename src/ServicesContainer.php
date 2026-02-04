@@ -12,6 +12,11 @@ use GlobalPayments\Api\ServiceConfigs\ServicesConfig;
 
 class ServicesContainer
 {
+    /** @var IPaymentGateway */
+    private $gateway;
+
+    /** @var IRecurringService */
+    private $recurring;
     /** @var  array */
     private $secure3dProviders;
     /** @var IPaymentGateway */
@@ -108,7 +113,7 @@ class ServicesContainer
         if (array_key_exists($configName, static::$configurations)) {
             return static::$configurations[$configName]->deviceInterface;
         }
-        
+
         throw new ApiException("The specified configuration has not been configured for terminal interaction.");
     }
 
@@ -117,7 +122,7 @@ class ServicesContainer
         if (array_key_exists($configName, static::$configurations)) {
             return static::$configurations[$configName]->deviceController;
         }
-        
+
         throw new ApiException("The specified configuration has not been configured for terminal interaction.");
     }
 
@@ -126,7 +131,7 @@ class ServicesContainer
         if (array_key_exists($configName, static::$configurations)) {
             return static::$configurations[$configName]->recurringConnector;
         }
-        
+
         throw new ApiException("The specified configuration has not been configured for recurring processing.");
     }
 
@@ -135,7 +140,7 @@ class ServicesContainer
         if (array_key_exists($configName, static::$configurations)) {
             return static::$configurations[$configName]->tableServiceClient;
         }
-        
+
         throw new ApiException("The specified configuration has not been configured for table service.");
     }
 
@@ -144,7 +149,7 @@ class ServicesContainer
         if (array_key_exists($configName, static::$configurations)) {
             return static::$configurations[$configName]->boardingServiceConnector;
         }
-        
+
         return null;
     }
 
@@ -153,7 +158,7 @@ class ServicesContainer
         if (array_key_exists($configName, static::$configurations)) {
             return static::$configurations[$configName]->payrollClient;
         }
-        
+
         throw new ApiException("The specified configuration has not been configured for payroll.");
     }
 
@@ -162,7 +167,7 @@ class ServicesContainer
         if (array_key_exists($configName, static::$configurations)) {
             return static::$configurations[$configName]->reportingService;
         }
-        
+
         throw new ApiException("The specified configuration has not been configured for reporting.");
     }
 
@@ -182,7 +187,7 @@ class ServicesContainer
             throw new ConfigurationException("Secure 3d is not configured on the connector.");
         }
     }
-    
+
     /**
      * @return IPayFacProvider
      */

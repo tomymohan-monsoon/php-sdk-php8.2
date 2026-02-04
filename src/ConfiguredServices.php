@@ -12,8 +12,9 @@ use GlobalPayments\Api\Terminals\DeviceController;
 
 class ConfiguredServices
 {
+    private $secure3dVersion;
     private $secure3dProviders;
-    
+
     /** @var IPayFacProvider  */
     private $payFacProvider;
 
@@ -71,7 +72,7 @@ class ConfiguredServices
     {
         $this->secure3dProviders[$version] = $provider;
     }
-    
+
     /**
      * @return void
      */
@@ -79,7 +80,7 @@ class ConfiguredServices
     {
         $this->payFacProvider = $provider;
     }
-    
+
     /**
      * @return IPayFacProvider
      */
