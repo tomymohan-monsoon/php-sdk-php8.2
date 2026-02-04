@@ -12,7 +12,7 @@ use GlobalPayments\Api\Terminals\DeviceController;
 
 class ConfiguredServices
 {
-    private $secure3dVersion;
+    public $secure3dVersion;
     private $secure3dProviders;
 
     /** @var IPayFacProvider  */
